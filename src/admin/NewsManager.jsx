@@ -15,7 +15,7 @@ function NewsManager() {
   const [editingId, setEditingId] = useState(null);
 
   useEffect(() => {
-    axios.get('${import.meta.env.VITE_API_BASE_URL}/api/news')
+    axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/news`)
       .then(res => {
         console.log('📰 News response:', res.data);
         setNews(Array.isArray(res.data) ? res.data : []);
@@ -102,6 +102,23 @@ function NewsManager() {
     });
     setEditingId(item._id);
   };
+
+  const handleDelete = id => {
+  if (!window.confirm('Are you sure you want to delete this news item?')) return;
+  const token = localStorage.getItem('adminToken');
+  axios.delete(`/api/news/${id}`, {
+    headers: {
+      ...(token && { Authorization: `Bearer ${token}` }),
+    }
+  })
+    .then(() => {
+      setNews(news.filter(item => item._id !== id));
+    })
+    .catch(err => {
+      console.error('Error deleting news:', err);
+      alert('Failed to delete news. Check console for more info.');
+    });
+};
 
   return (
     <div className="manager">
