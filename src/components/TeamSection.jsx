@@ -12,7 +12,7 @@ function TeamSection() {
 
   const fetchTeam = async () => {
     try {
-      const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/news`);
+      const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/team`);
       const members = res.data;
 
       const chairmanMember = members.find((m) =>

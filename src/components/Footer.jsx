@@ -65,8 +65,7 @@ function Footer() {
             </a>
           </li>
           <li>
-            <a href="/admin/login" target="_blank" rel="noopener noreferrer">Admin</a>
-          </li>
+          <Link to="/admin/login">Admin</Link>          </li>
         </ul>
       </div>
 
