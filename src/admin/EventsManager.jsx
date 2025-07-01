@@ -17,7 +17,7 @@ function EventManager() {
   const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
-    axios.get('${import.meta.env.VITE_API_BASE_URL}/api/events')
+    axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/events`)
       .then(res => setEvents(res.data))
       .catch(err => console.error('Error fetching events:', err));
   }, []);
@@ -36,7 +36,7 @@ function EventManager() {
         const updated = events.map(ev => ev._id === editingId ? res.data : ev);
         setEvents(updated);
       } else {
-        const res = await axios.post('${import.meta.env.VITE_API_BASE_URL}/api/events', formData, {
+        const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/events`, formData, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setEvents([...events, res.data]);

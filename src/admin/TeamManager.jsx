@@ -21,7 +21,7 @@ function TeamManager() {
   const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
-    axios.get('${import.meta.env.VITE_API_BASE_URL}/api/team')
+    axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/team`)
       .then(res => setTeam(res.data))
       .catch(err => console.error('Error fetching team:', err));
   }, []);
