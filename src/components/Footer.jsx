@@ -13,7 +13,7 @@ function Footer() {
           Cairo, Egypt
         </p>
         <p>+20 11 5242 1264</p>
-        <p><a href="mailto:diaspora@tzinegypt.org">diaspora@tzinegypt.org</a></p>
+        <p><a href="mailto:diaspora@tde.org">diaspora@tzinegypt.org</a></p>
 
         <div className="socials">
           <a
