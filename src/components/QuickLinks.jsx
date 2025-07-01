@@ -110,7 +110,7 @@ function QuickLinks() {
               and capital acquisitions can be fully expensed.
             </p>
             <p>
-              Additionally, Tanzania has signed <a href="https://www.tra.go.tz/index.php/treaties-agreements" target="_blank" rel="noopener noreferrer">double taxation treaties</a> with countries including the UK, India,
+              Additionally, Tanzania has signed <a href="https://www.tra.go.tz/index.php/treaties-agreements" target="_blank" rel="noopener noreferrer">double taxation treaties</a> with countries including Egypt, India,
               Kenya, Sweden, and Norway, making cross-border investment more efficient.
             </p>
             <p>

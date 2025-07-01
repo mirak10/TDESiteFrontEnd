@@ -2,12 +2,45 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './NewsSection.css';
 
+
+
 function NewsSection() {
   const [newsData, setNewsData] = useState([]);
   const [selectedNews, setSelectedNews] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [cardsPerView, setCardsPerView] = useState(3);
   const [modalImageIndex, setModalImageIndex] = useState(0);
+
+  // Swipe detection state
+const [touchStartX, setTouchStartX] = useState(null);
+const [touchEndX, setTouchEndX] = useState(null);
+
+const handleTouchStart = (e) => {
+  setTouchStartX(e.targetTouches[0].clientX);
+};
+
+const handleTouchMove = (e) => {
+  setTouchEndX(e.targetTouches[0].clientX);
+};
+
+const handleTouchEnd = () => {
+  if (!touchStartX || !touchEndX) return;
+  const distance = touchStartX - touchEndX;
+  if (distance > 50) {
+    // Swiped left
+    if (currentIndex + cardsPerView < newsData.length) {
+      setCurrentIndex(currentIndex + cardsPerView);
+    }
+  }
+  if (distance < -50) {
+    // Swiped right
+    if (currentIndex - cardsPerView >= 0) {
+      setCurrentIndex(currentIndex - cardsPerView);
+    }
+  }
+  setTouchStartX(null);
+  setTouchEndX(null);
+};
 
   useEffect(() => {
     fetchNews();
@@ -65,7 +98,12 @@ function NewsSection() {
     <h2 className="news-title">News & Updates</h2>
 
     <div className="news-wrapper">
-      <div className="news-slider">
+      <div className="news-slider"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+
+      >
         {visibleNews.map(news => (
           <div key={news._id} className="news-card" onClick={() => handleOpenModal(news)}>
             <img

@@ -8,6 +8,10 @@ function EventsSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [cardsPerView, setCardsPerView] = useState(4);
 
+  // Swipe detection state
+  const [touchStartX, setTouchStartX] = useState(null);
+  const [touchEndX, setTouchEndX] = useState(null);
+
   useEffect(() => {
     const fetchEvents = async () => {
       try {
@@ -40,11 +44,44 @@ function EventsSection() {
 
   const visibleEvents = events.slice(currentIndex, currentIndex + cardsPerView);
 
+  // Swipe handlers
+  const handleTouchStart = (e) => {
+    setTouchStartX(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e) => {
+    setTouchEndX(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStartX || !touchEndX) return;
+    const distance = touchStartX - touchEndX;
+    if (distance > 50) {
+      // Swiped left
+      if (currentIndex + cardsPerView < events.length) {
+        setCurrentIndex(currentIndex + cardsPerView);
+      }
+    }
+    if (distance < -50) {
+      // Swiped right
+      if (currentIndex - cardsPerView >= 0) {
+        setCurrentIndex(currentIndex - cardsPerView);
+      }
+    }
+    setTouchStartX(null);
+    setTouchEndX(null);
+  };
+
   return (
     <section className="slideshow-section" id="events">
       <h2>Upcoming Events</h2>
       <div className="slideshow-wrapper">
-        <div className="slideshow-grid">
+        <div
+          className="slideshow-grid"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
           {visibleEvents.map((event) => (
             <div key={event._id} className="slide-card" onClick={() => setSelectedEvent(event)}>
               <img src={event.imageUrl} alt={event.title} className="slide-img" />
