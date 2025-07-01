@@ -17,8 +17,7 @@ function NewsSection() {
 
   const fetchNews = async () => {
     try {
-      const res = await axios.get('/api/news');
-      setNewsData(res.data);
+      const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/news`);      setNewsData(res.data);
     } catch (err) {
       console.error('Error fetching news:', err);
     }

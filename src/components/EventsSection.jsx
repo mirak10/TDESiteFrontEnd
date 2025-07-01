@@ -11,8 +11,7 @@ function EventsSection() {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const res = await axios.get('/api/events');
-        setEvents(res.data);
+        const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/events`);        setEvents(res.data);
       } catch (err) {
         console.error('Error fetching events:', err);
       }
