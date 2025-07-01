@@ -7,17 +7,20 @@ function NewsSection() {
   const [selectedNews, setSelectedNews] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [cardsPerView, setCardsPerView] = useState(3);
+  const [modalImageIndex, setModalImageIndex] = useState(0);
 
   useEffect(() => {
     fetchNews();
     updateCardsPerView();
     window.addEventListener('resize', updateCardsPerView);
     return () => window.removeEventListener('resize', updateCardsPerView);
+    // eslint-disable-next-line
   }, []);
 
   const fetchNews = async () => {
     try {
-      const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/news`);      setNewsData(res.data);
+      const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/news`);
+      setNewsData(res.data);
     } catch (err) {
       console.error('Error fetching news:', err);
     }
@@ -44,50 +47,95 @@ function NewsSection() {
     }
   };
 
+  // Reset modal image index when opening a new modal
+  const handleOpenModal = (news) => {
+    setSelectedNews(news);
+    setModalImageIndex(0);
+  };
+
+  // Fullscreen image on click in modal
+  const handleModalImageClick = () => {
+    if (selectedNews?.imageUrls?.[modalImageIndex]) {
+      window.open(selectedNews.imageUrls[modalImageIndex], '_blank');
+    }
+  };
+
   return (
-    <section className="news" id="news">
-      <h2 className="news-title">News & Updates</h2>
+  <section className="news" id="news">
+    <h2 className="news-title">News & Updates</h2>
 
-      <div className="news-wrapper">
-        {currentIndex > 0 && (
-          <button className="news-arrow left" onClick={prevSlide}>◀</button>
-        )}
-
-        <div className="news-slider">
-          {visibleNews.map(news => (
-            <div key={news._id} className="news-card" onClick={() => setSelectedNews(news)}>
-              <img src={news.imageUrls?.[0] || '/default-news.jpg'} alt={news.title} className="news-image" />
-              <h3>{news.title}</h3>
-              <p>{news.description}</p>
-            </div>
-          ))}
-        </div>
-
-        {currentIndex + cardsPerView < newsData.length && (
-          <button className="news-arrow right" onClick={nextSlide}>▶</button>
-        )}
-      </div>
-
-      {selectedNews && (
-        <div className="news-modal-overlay" onClick={() => setSelectedNews(null)}>
-          <div className="news-modal" onClick={(e) => e.stopPropagation()}>
+    <div className="news-wrapper">
+      <div className="news-slider">
+        {visibleNews.map(news => (
+          <div key={news._id} className="news-card" onClick={() => handleOpenModal(news)}>
             <img
-              src={selectedNews.imageUrls?.[0] || '/default-news.jpg'}
-              alt={selectedNews.title}
-              className="modal-image"
-              style={{ maxHeight: '200px', objectFit: 'cover' }}
+              src={news.imageUrls?.[0] || '/default-news.jpg'}
+              alt={news.title}
+              className="news-image"
             />
-            <h3>{selectedNews.title}</h3>
-            <p><strong>{selectedNews.time}</strong> — by {selectedNews.author}</p>
-            <div className="modal-text">
-              {selectedNews.fullText}
-            </div>
-            <button onClick={() => setSelectedNews(null)}>Close</button>
+            <h3>{news.title}</h3>
+            <p>{news.description}</p>
           </div>
+        ))}
+      </div>
+    </div>
+
+    {/* 🔵 Dot navigation */}
+    {newsData.length > cardsPerView && (
+      <div className="news-dots">
+        {Array.from({ length: Math.ceil(newsData.length / cardsPerView) }).map((_, idx) => (
+          <button
+            key={idx}
+            className={`news-dot${currentIndex / cardsPerView === idx ? ' active' : ''}`}
+            onClick={() => setCurrentIndex(idx * cardsPerView)}
+            aria-label={`Go to slide ${idx + 1}`}
+          />
+        ))}
+      </div>
+    )}
+
+    {/* 📰 Modal */}
+    {selectedNews && (
+      <div className="news-modal-overlay" onClick={() => setSelectedNews(null)}>
+        <div className="news-modal" onClick={e => e.stopPropagation()}>
+          {selectedNews.imageUrls?.length > 0 && (
+            <>
+              <img
+                src={selectedNews.imageUrls[modalImageIndex]}
+                alt={`${selectedNews.title} ${modalImageIndex + 1}`}
+                className="modal-image"
+                style={{ maxHeight: '200px', objectFit: 'cover', cursor: 'zoom-in' }}
+                onClick={handleModalImageClick}
+                title="Click to view full image"
+              />
+              {selectedNews.imageUrls.length > 1 && (
+                <div className="news-dots">
+                  {selectedNews.imageUrls.map((_, idx) => (
+                    <button
+                      key={idx}
+                      className={`news-dot${modalImageIndex === idx ? ' active' : ''}`}
+                      onClick={() => setModalImageIndex(idx)}
+                      aria-label={`Go to image ${idx + 1}`}
+                    />
+                  ))}
+                </div>
+              )}
+            </>
+          )}
+          <h3>{selectedNews.title}</h3>
+          <p><strong>{selectedNews.time}</strong> — by {selectedNews.author}</p>
+          <div className="modal-text">
+            {selectedNews.fullText.split('\n').map((paragraph, idx) => (
+              <p key={idx}>{paragraph}</p>
+            ))}
+          </div>
+          <button onClick={() => setSelectedNews(null)}>Close</button>
         </div>
-      )}
-    </section>
-  );
+      </div>
+    )}
+  </section>
+);
+
 }
 
 export default NewsSection;

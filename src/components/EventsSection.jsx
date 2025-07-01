@@ -11,7 +11,8 @@ function EventsSection() {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/events`);        setEvents(res.data);
+        const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/events`);
+        setEvents(res.data);
       } catch (err) {
         console.error('Error fetching events:', err);
       }
@@ -30,16 +31,11 @@ function EventsSection() {
     else setCardsPerView(4);
   };
 
-  const nextSlide = () => {
-    if (currentIndex + cardsPerView < events.length) {
-      setCurrentIndex(currentIndex + cardsPerView);
-    }
-  };
+  const totalPages = Math.ceil(events.length / cardsPerView);
+  const currentPage = Math.floor(currentIndex / cardsPerView);
 
-  const prevSlide = () => {
-    if (currentIndex - cardsPerView >= 0) {
-      setCurrentIndex(currentIndex - cardsPerView);
-    }
+  const goToPage = (pageIdx) => {
+    setCurrentIndex(pageIdx * cardsPerView);
   };
 
   const visibleEvents = events.slice(currentIndex, currentIndex + cardsPerView);
@@ -48,7 +44,6 @@ function EventsSection() {
     <section className="slideshow-section" id="events">
       <h2>Upcoming Events</h2>
       <div className="slideshow-wrapper">
-        {currentIndex > 0 && <button className="arrow left" onClick={prevSlide}>◀</button>}
         <div className="slideshow-grid">
           {visibleEvents.map((event) => (
             <div key={event._id} className="slide-card" onClick={() => setSelectedEvent(event)}>
@@ -58,8 +53,18 @@ function EventsSection() {
             </div>
           ))}
         </div>
-        {currentIndex + cardsPerView < events.length && (
-          <button className="arrow right" onClick={nextSlide}>▶</button>
+        {/* Pagination dots for events */}
+        {totalPages > 1 && (
+          <div className="events-dots">
+            {Array.from({ length: totalPages }).map((_, idx) => (
+              <button
+                key={idx}
+                className={`events-dot${currentPage === idx ? ' active' : ''}`}
+                onClick={() => goToPage(idx)}
+                aria-label={`Go to slide ${idx + 1}`}
+              />
+            ))}
+          </div>
         )}
       </div>
 
@@ -68,8 +73,15 @@ function EventsSection() {
           <div className="slide-modal" onClick={(e) => e.stopPropagation()}>
             <img src={selectedEvent.imageUrl} alt={selectedEvent.title} className="modal-img" />
             <h3>{selectedEvent.title}</h3>
-            <p><strong>{selectedEvent.date} – {selectedEvent.time}</strong><br />by {selectedEvent.author || 'Organizers'}</p>
-            <div className="modal-description">{selectedEvent.fullDetails}</div>
+            <p>
+              <strong>{selectedEvent.date} – {selectedEvent.time}</strong>
+              <br />by {selectedEvent.author || 'Organizers'}
+            </p>
+            <div className="modal-description">
+              {selectedEvent.fullDetails.split('\n').map((paragraph, idx) => (
+                <p key={idx}>{paragraph}</p>
+              ))}
+            </div>
             <button onClick={() => setSelectedEvent(null)}>Close</button>
           </div>
         </div>
