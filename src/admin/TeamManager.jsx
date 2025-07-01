@@ -37,7 +37,7 @@ function TeamManager() {
 
     const request = editingId
       ? axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/team/${editingId}`, formData, headers)
-      : axios.post('${import.meta.env.VITE_API_BASE_URL}/api/team', formData, headers);
+      : axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/team`, formData, headers);
 
     request
       .then(res => {

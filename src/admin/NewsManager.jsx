@@ -63,8 +63,10 @@ function NewsManager() {
   };
 
   const method = editingId ? 'put' : 'post';
-  const url = editingId ? `/api/news/${editingId}` : '/api/news';
-  const token = localStorage.getItem('adminToken');
+const url = editingId
+  ? `${import.meta.env.VITE_API_BASE_URL}/api/news/${editingId}`
+  : `${import.meta.env.VITE_API_BASE_URL}/api/news`;  
+const token = localStorage.getItem('adminToken');
 
   const config = {
     headers: {
@@ -106,11 +108,12 @@ function NewsManager() {
   const handleDelete = id => {
   if (!window.confirm('Are you sure you want to delete this news item?')) return;
   const token = localStorage.getItem('adminToken');
-  axios.delete(`/api/news/${id}`, {
-    headers: {
-      ...(token && { Authorization: `Bearer ${token}` }),
-    }
-  })
+  axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/news/${id}`, {
+  headers: {
+    ...(token && { Authorization: `Bearer ${token}` }),
+  }
+})
+  
     .then(() => {
       setNews(news.filter(item => item._id !== id));
     })

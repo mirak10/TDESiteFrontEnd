@@ -19,7 +19,7 @@ function AdminManager() {
 
   const fetchAdmins = async () => {
     try {
-      const res = await axios.get('${import.meta.env.VITE_API_BASE_URL}/api/admin', {
+      const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/admin`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setAdmins(res.data);
@@ -40,7 +40,7 @@ function AdminManager() {
           headers: { Authorization: `Bearer ${token}` },
         });
       } else {
-        await axios.post('${import.meta.env.VITE_API_BASE_URL}/api/admin', form, {
+        await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/admin`, form, {
           headers: { Authorization: `Bearer ${token}` },
         });
       }

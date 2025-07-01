@@ -13,14 +13,18 @@ import AdminManager from './AdminManager';
 function AdminDashboard() {
   const [activeTab, setActiveTab] = useState('dashboard');
   const navigate = useNavigate();
+    const adminRole = localStorage.getItem('adminRole'); // <-- Add this line
+
 
   // Redirect if not logged in
   useEffect(() => {
     const token = localStorage.getItem('adminToken');
     if (!token) {
-      navigate('/admin-login');
+      navigate('/admin/login');
     }
   }, [navigate]);
+
+  
 
   const renderContent = () => {
     switch (activeTab) {

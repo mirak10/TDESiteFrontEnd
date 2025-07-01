@@ -14,7 +14,7 @@ function AdminProfile() {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const res = await axios.get('${import.meta.env.VITE_API_BASE_URL}/api/admin/profile', {
+        const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/admin/profile`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('adminToken')}`,
           },
@@ -41,7 +41,7 @@ function AdminProfile() {
     setError('');
     try {
       const res = await axios.put(
-        '${import.meta.env.VITE_API_BASE_URL}/api/admin/profile',
+        `${import.meta.env.VITE_API_BASE_URL}/api/admin/profile`,
         formData,
         {
           headers: {
