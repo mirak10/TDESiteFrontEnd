@@ -80,6 +80,10 @@
   margin-top: 0.5rem;
 }
 
+section {
+  scroll-margin-top: 140px;
+}
+
 /* Responsive section */
 @media (max-width: 768px) {
   .navbar {
@@ -141,4 +145,8 @@
   .hide-on-scroll {
     display: none !important;
   }
+
+  section {
+  scroll-margin-top: 90px;
+}
 }
