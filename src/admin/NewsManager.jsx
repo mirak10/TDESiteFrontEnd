@@ -15,7 +15,7 @@ function NewsManager() {
   const [editingId, setEditingId] = useState(null);
 
   useEffect(() => {
-    axios.get('/api/news')
+    axios.get('${import.meta.env.VITE_API_BASE_URL}/api/news')
       .then(res => {
         console.log('📰 News response:', res.data);
         setNews(Array.isArray(res.data) ? res.data : []);

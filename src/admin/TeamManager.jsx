@@ -21,7 +21,7 @@ function TeamManager() {
   const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/team')
+    axios.get('${import.meta.env.VITE_API_BASE_URL}/api/team')
       .then(res => setTeam(res.data))
       .catch(err => console.error('Error fetching team:', err));
   }, []);
@@ -36,8 +36,8 @@ function TeamManager() {
     const headers = { headers: { Authorization: `Bearer ${token}` } };
 
     const request = editingId
-      ? axios.put(`http://localhost:5000/api/team/${editingId}`, formData, headers)
-      : axios.post('http://localhost:5000/api/team', formData, headers);
+      ? axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/team/${editingId}`, formData, headers)
+      : axios.post('${import.meta.env.VITE_API_BASE_URL}/api/team', formData, headers);
 
     request
       .then(res => {
@@ -61,7 +61,7 @@ function TeamManager() {
 
   const handleDelete = id => {
     if (window.confirm("Are you sure you want to delete this member?")) {
-      axios.delete(`http://localhost:5000/api/team/${id}`, {
+      axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/team/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
         .then(() => setTeam(team.filter(member => member._id !== id)))

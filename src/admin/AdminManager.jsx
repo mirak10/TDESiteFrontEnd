@@ -19,7 +19,7 @@ function AdminManager() {
 
   const fetchAdmins = async () => {
     try {
-      const res = await axios.get('/api/admin', {
+      const res = await axios.get('${import.meta.env.VITE_API_BASE_URL}/api/admin', {
         headers: { Authorization: `Bearer ${token}` },
       });
       setAdmins(res.data);
@@ -36,11 +36,11 @@ function AdminManager() {
     e.preventDefault();
     try {
       if (editingId) {
-        await axios.put(`/api/admin/${editingId}`, form, {
+        await axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/admin/${editingId}`, form, {
           headers: { Authorization: `Bearer ${token}` },
         });
       } else {
-        await axios.post('/api/admin', form, {
+        await axios.post('${import.meta.env.VITE_API_BASE_URL}/api/admin', form, {
           headers: { Authorization: `Bearer ${token}` },
         });
       }
@@ -54,7 +54,7 @@ function AdminManager() {
   const handleDelete = async (id) => {
     if (window.confirm('Delete this admin?')) {
       try {
-        await axios.delete(`/api/admin/${id}`, {
+        await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/admin/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         fetchAdmins();

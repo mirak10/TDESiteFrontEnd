@@ -17,7 +17,7 @@ function EventManager() {
   const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
-    axios.get('/api/events')
+    axios.get('${import.meta.env.VITE_API_BASE_URL}/api/events')
       .then(res => setEvents(res.data))
       .catch(err => console.error('Error fetching events:', err));
   }, []);
@@ -30,13 +30,13 @@ function EventManager() {
     e.preventDefault();
     try {
       if (editingId) {
-        const res = await axios.put(`/api/events/${editingId}`, formData, {
+        const res = await axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/events/${editingId}`, formData, {
           headers: { Authorization: `Bearer ${token}` }
         });
         const updated = events.map(ev => ev._id === editingId ? res.data : ev);
         setEvents(updated);
       } else {
-        const res = await axios.post('/api/events', formData, {
+        const res = await axios.post('${import.meta.env.VITE_API_BASE_URL}/api/events', formData, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setEvents([...events, res.data]);
@@ -50,7 +50,7 @@ function EventManager() {
   const handleDelete = async id => {
     if (!window.confirm("Delete this event?")) return;
     try {
-      await axios.delete(`/api/events/${id}`, {
+      await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/events/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setEvents(events.filter(ev => ev._id !== id));
