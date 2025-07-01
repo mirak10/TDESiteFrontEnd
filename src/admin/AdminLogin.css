@@ -1,0 +1,35 @@
+/* AdminLogin.css */
+.login-container {
+  max-width: 400px;
+  margin: 60px auto;
+  padding: 2rem;
+  border: 0.5px solid #005bab;
+  border-radius: 12px;
+  background: #f0f8ff;
+  text-align: center;
+}
+
+.login-container h2 {
+  color: #005bab;
+}
+
+.login-container input {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.login-container button {
+  padding: 10px 20px;
+  background-color: #005bab;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.login-container .error {
+  color: red;
+  margin-top: 10px;
+}

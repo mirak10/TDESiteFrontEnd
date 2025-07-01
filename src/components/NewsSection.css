@@ -1,0 +1,126 @@
+.news {
+  background-color: white;
+  padding: 3rem 1rem;
+  color: #004d40;
+}
+
+.news-title {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 2rem; /* optional, for spacing */
+}
+
+.news-slider {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.news-card {
+  width: 300px;
+  background: #f7f7f7;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+.news-card:hover {
+  transform: scale(1.02);
+}
+
+.news-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.news-card h3 {
+  margin: 1rem;
+  font-size: 1.2rem;
+}
+
+.news-card p {
+  margin: 0 1rem 1rem;
+  font-size: 0.95rem;
+}
+
+/* Modal Styles */
+.news-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.news-modal {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  color: #333;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.modal-image {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.news-modal button {
+  margin-top: 1rem;
+  background-color: #004d40;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.news-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.news-arrow {
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: #004d40;
+  cursor: pointer;
+  z-index: 10;
+  padding: 0 1rem; 
+}
+
+.news-arrow.left {
+  margin-right: 1rem;
+}
+
+.news-arrow.right {
+  margin-left: 1rem;
+}
+
+.modal-text {
+  max-height: 150px;
+  overflow-y: auto;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .arrow {
+    font-size: 1.5rem;
+  }
+}

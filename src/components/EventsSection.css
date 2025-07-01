@@ -1,0 +1,137 @@
+.slideshow-section {
+  background-color: #fff;
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+.slideshow-section h2 {
+  font-size: 2rem;
+  color: #004d40;
+  margin-bottom: 2rem;
+}
+
+.slideshow-grid {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem; /* adjust spacing between cards as needed */
+  justify-content: center;
+  align-items: stretch;
+}
+
+.slide-card {
+  background-color: #f9f9f9;
+  padding: 1rem;
+  border-radius: 10px;
+  width: 220px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+  cursor: pointer;
+  color: #004d40;
+}
+
+.slide-card:hover {
+  transform: translateY(-5px);
+}
+
+.slide-img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  
+}
+
+.slide-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1001;
+}
+
+.slide-modal {
+  background-color: #fff;
+  padding: 2rem;
+  max-width: 500px;
+  border-radius: 10px;
+  position: relative;
+  text-align: left;
+  color: #004d40;
+}
+
+.modal-img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.slide-modal button {
+  background-color: #004d40;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.slide-modal button:hover {
+  background-color: #00796b;
+}
+
+.slideshow-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.arrow {
+  font-size: 2rem;
+  background: none;
+  border: none;
+  color: #004d40;
+  cursor: pointer;
+  z-index: 10;
+  padding: 0 1rem;
+}
+
+.arrow:hover {
+  color: #00796b;
+}
+
+@media (max-width: 768px) {
+  .arrow {
+    font-size: 1.5rem;
+  }
+}
+
+/* Make modal image responsive & fix modal dimensions */
+.slide-modal {
+  max-width: 90%;
+  width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-img {
+  max-height: 250px;
+  object-fit: cover;
+  width: 100%;
+  border-radius: 8px;
+}
+
+/* Scrollable full description */
+.modal-description {
+  max-height: 150px;
+  overflow-y: auto;
+  margin-top: 1rem;
+  line-height: 1.4;
+}

@@ -1,0 +1,45 @@
+.quick-links {
+  background-color: #094768;
+  color: white;
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+.quick-links h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+}
+
+.link-card {
+  background-color: #094768;
+  color: white;
+  width: 120px;
+  padding: 1rem;
+  border-radius: 10px;
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.link-card:hover {
+  transform: translateY(-5px);
+}
+
+.link-card:hover .link-icon,
+.link-card:hover span,
+.link-card:hover h3,
+.link-card:hover p {
+  color: #fcd116;
+}
+
+.link-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}

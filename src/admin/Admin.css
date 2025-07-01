@@ -1,0 +1,259 @@
+.admin-container {
+  display: flex;
+  height: 100vh;
+  font-family: sans-serif;
+}
+
+.admin-sidebar {
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100vh;
+  background-color: #094768;
+  color: white;
+  padding: 1rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+
+.admin-sidebar h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.admin-sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.admin-sidebar li {
+  margin: 1rem 0;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+.admin-sidebar li:hover {
+  background-color: #0d5e8f;
+}
+
+.admin-content {
+  flex-grow: 1;
+  padding: 2rem;
+  background: #f9f9f9;
+}
+
+
+/*Team style*/
+.team-form {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.team-form input {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  flex: 1;
+  min-width: 200px;
+}
+
+.team-form button {
+  background-color: #094768;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.team-form button:hover {
+  background-color: #0c5d8f;
+}
+
+.member-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.member-card {
+  display: flex;
+  align-items: center;
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.member-img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 1rem;
+}
+
+.member-info {
+  flex-grow: 1;
+}
+
+
+.member-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.member-actions button {
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.member-actions button:nth-child(1) { /* Edit button */
+  background-color: #f0a500;
+}
+
+.member-actions button:nth-child(1):hover {
+  background-color: #cc8500;
+}
+
+.member-actions button:nth-child(2) { /* Delete button */
+  background-color: #e63946;
+}
+
+.member-actions button:nth-child(2):hover {
+  background-color: #c91f2b;
+}
+
+/*News Style*/
+.manager {
+  padding: 2rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+
+.manager h2 {
+  margin-bottom: 1rem;
+}
+
+.manager form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  margin-bottom: 2rem;
+}
+
+.manager input,
+.manager textarea {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.manager button {
+  background-color: #094768;
+  color: white;
+  border: none;
+  padding: 0.7rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.entries {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.entry {
+  background: white;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.member-actions {
+  margin-top: 0.5rem;
+}
+
+.member-actions button {
+  margin-right: 0.6rem;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+.edit-btn {
+  background-color: orange;
+}
+
+.delete-btn {
+  background-color: crimson;
+}
+
+.entry-image {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin: 0.5rem 0;
+}
+
+/*Event Style*/
+.event-images {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.event-images img {
+  width: 100px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.admin-hamburger {
+  display: none;
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 200;
+  background: #094768;
+  color: #fff;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+  .admin-hamburger {
+    display: block;
+  }
+  .admin-sidebar {
+    position: fixed;
+    top: 0;
+    left: -260px;
+    width: 250px;
+    height: 100vh;
+    background: #094768;
+    color: #fff;
+    z-index: 150;
+    transition: left 0.3s;
+    overflow-y: auto;
+  }
+  .admin-sidebar.open {
+    left: 0;
+  }
+}
