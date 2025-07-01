@@ -77,7 +77,7 @@ function Footer() {
       {/* Copyright */}
       <div className="footer-copyright">
         &copy; {new Date().getFullYear()} Tanzanian Diaspora in Egypt. All rights reserved.
-        <p href="https://www.linkedin.com/in/karim-kilimoh-b6b733127/" target="_blank" rel="noopener noreferrer">Developed by Karim Kilimoh</p>
+        <p>Developed by <a href="https://www.linkedin.com/in/karim-kilimoh-b6b733127/" target="_blank" rel="noopener noreferrer"> Karim Kilimoh</a></p>
       </div>
     </footer>
   );

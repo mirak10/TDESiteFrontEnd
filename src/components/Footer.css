@@ -71,6 +71,17 @@
   border-top: 1px solid #eee;
 }
 
+.footer-copyright a{
+  color: #094768;
+  text-decoration: none;
+
+}
+
+.footer-copyright a:hover {
+  color: #fcd116;
+  text-decoration: none;
+}
+
 @media (max-width: 768px) {
   .footer {
     flex-direction: column;
