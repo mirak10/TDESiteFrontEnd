@@ -110,7 +110,7 @@ function QuickLinks() {
               and capital acquisitions can be fully expensed.
             </p>
             <p>
-              Additionally, Tanzania has signed <a href="https://www.tra.go.tz/index.php/treaties-agreements" target="_blank" rel="noopener noreferrer">double taxation treaties</a> with countries including Egypt, India,
+              Additionally, Tanzania has signed <a href="https://www.tra.go.tz/index.php/treaties-agreements" target="_blank" rel="noopener noreferrer">double taxation treaties</a> with countries including the UK, India,
               Kenya, Sweden, and Norway, making cross-border investment more efficient.
             </p>
             <p>
@@ -119,7 +119,7 @@ function QuickLinks() {
               <a href="https://www.tic.go.tz/" target="_blank" rel="noopener noreferrer"> Tanzania Investment Centre (TIC)</a>.
             </p>
             <p>
-              For diaspora support and trade inquiries in the UK, feel free to reach out to the Tanzanian
+              For diaspora support and trade inquiries in Egypt, feel free to reach out to the Tanzanian
               Diaspora in Egypt (TDE) team via their official email:
               <a href="mailto:diaspora@tde.org" target="_blank" rel="noopener noreferrer"> diaspora@tzinegypt.org </a>.
             </p>
