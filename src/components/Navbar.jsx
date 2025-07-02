@@ -17,7 +17,7 @@ function Navbar() {
     <nav className={`navbar${scrolled ? ' scrolled' : ''}`}>
       <div className={`navbar-left${scrolled ? ' hide-on-scroll' : ''}`}>
         <img src="https://res.cloudinary.com/dlxoa0rcl/image/upload/v1751323174/tz-flag_pfplqc.png" alt="Tanzania Flag" className="flag" />
-        <img src="https://res.cloudinary.com/dlxoa0rcl/image/upload/v1751323172/eg-flag_nnogxb.png" alt="Egypt Flag" className="flag" />
+        <img src="https://res.cloudinary.com/dlxoa0rcl/image/upload/v1751452469/eg-flag-nb_msr5b4.png" alt="Egypt Flag" className="flag" />
 
       </div>
 
