@@ -156,7 +156,11 @@ const token = localStorage.getItem('adminToken');
           <div key={item._id} className="entry">
             <h3>{item.title}</h3>
             <p><strong>{item.description}</strong></p>
-            <p>{item.fullText}</p>
+
+            {item.fullText.split('\n').map((paragraph, idx) => (
+              <p key={idx}>{paragraph}</p>
+            ))}
+
             <p><strong>Author:</strong> {item.author}</p>
             <p><em>{item.time}</em></p>
             {item.imageUrls?.length > 0 && (
